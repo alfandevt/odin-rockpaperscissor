@@ -13,7 +13,7 @@
     <title>Document</title>
   </head>
   <body>
-    <main>
+    <main id="main-game">
       <!-- Container -->
       <div class="container">
         <!-- ==CPU Deck== -->
@@ -21,7 +21,7 @@
         <div class="deck ai">
           <!-- Details -->
           <div class="deck__details">
-            <h4 class="deck__username">Username</h4>
+            <h4 class="deck__username">CPU</h4>
             <!-- >>Health Bar<<p -->
             <div class="deck__health-bar">
               <div class="deck__health-bar__filler"></div>
@@ -29,7 +29,7 @@
             </div>
           </div>
           <img
-            src="https://picsum.photos/200"
+            src="https://picsum.photos/200?random=1"
             alt="avatar"
             class="deck__avatar"
           />
@@ -48,7 +48,7 @@
                 </div>
               </div>
             </div>
-            <p class="battle-card__username">Username</p>
+            <p class="battle-card__username">CPU</p>
           </div>
           <h3 class="battle-space__heading">VS</h3>
           <div class="battle-card__wrapper">
@@ -69,21 +69,30 @@
         <div class="player-deck__wrapper">
           <!-- Attack Options -->
           <div class="deck__options__list">
-            <div class="deck__options__item">🧱</div>
-            <div class="deck__options__item">📄</div>
-            <div class="deck__options__item">✂</div>
+            <div class="deck__options__item">
+              🧱
+              <span id="rock" class="deck__options__item__value">rock</span>
+            </div>
+            <div class="deck__options__item">
+              📄
+              <span id="paper" class="deck__options__item__value">paper</span>
+            </div>
+            <div class="deck__options__item">
+              ✂
+              <span id="scissor" class="deck__options__item__value">scissor</span>
+            </div>
             <button class="deck__start__button">start</button>
           </div>
           <!-- =Deck= -->
           <div class="deck">
             <img
-              src="https://picsum.photos/200"
+              src="https://picsum.photos/200?random=2"
               alt="avatar"
               class="deck__avatar"
             />
             <!-- Details -->
             <div class="deck__details">
-              <h4 class="deck__username">Username</h4>
+              <h4 id="playerUsername" class="deck__username">Username</h4>
               <!-- >>Health Bar<<p -->
               <div class="deck__health-bar">
                 <div class="deck__health-bar__filler"></div>
@@ -97,5 +106,24 @@
       </div>
       <!-- End Container -->
     </main>
+
+    <!-- <div class="overlay">
+      <div class="modal-card">
+        <div class="modal-head">
+          <h1>Rock Paper Scissor</h1>
+        </div>
+        <div class="modal-content">
+          <div class="modal-input">
+            <label>Enter a username:</label>
+            <input type="text" id="usernameInput">
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button class="btn-succes">START</button>
+        </div>
+      </div>
+    </div> -->
+
+    <script src="main.js"></script>
   </body>
 </html>

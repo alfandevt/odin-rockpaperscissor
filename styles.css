@@ -113,6 +113,11 @@ main {
   transform: scale(0.9);
 }
 
+.deck__options__item__value {
+  position: absolute;
+  visibility: hidden;
+}
+
 .deck__start__button {
   border: 4px solid #000;
   background-color: #000;
@@ -171,12 +176,7 @@ main {
 
 .battle-card__front {
   background: rgb(255, 255, 255);
-  background: radial-gradient(
-    circle,
-    #ffffff 0%,
-    #f5f5f7 30%,
-    #000000 32%
-  );
+  background: radial-gradient(circle, #ffffff 0%, #f5f5f7 30%, #000000 32%);
   transform: rotateY(180deg);
 }
 
@@ -199,4 +199,37 @@ main {
   font-size: 16px;
   font-weight: 400;
   margin: 8px 0;
+}
+
+.overlay {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: hsla(0, 0%, 0%, 0.787);
+  width: 100%;
+  height: 100%;
+}
+
+.modal-card {
+  padding: 30px;
+  background-color: #f5f5f7;
+  border: 4px solid #000;
+}
+
+.modal-head {
+  border: 4px solid #000;
+  padding: 4px 8px;
+}
+
+.modal-input {
+  padding: 8px;
+}
+.modal-input input {
+  border: none;
+  padding: 8px;
+  border-radius: 0;
+  background-color: #f5f5f7;
 }
