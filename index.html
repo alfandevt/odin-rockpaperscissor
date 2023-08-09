@@ -44,7 +44,7 @@
               <div class="battle-card__inner">
                 <div class="battle-card__back">&nbsp;</div>
                 <div class="battle-card__front">
-                  <span class="battle-card__icon">📄</span>
+                  <span class="battle-card__icon" id="cpu-card-icon">📄</span>
                 </div>
               </div>
             </div>
@@ -57,7 +57,7 @@
               <div class="battle-card__inner">
                 <div class="battle-card__back">&nbsp;</div>
                 <div class="battle-card__front">
-                  <span class="battle-card__icon">🧱</span>
+                  <span class="battle-card__icon" id="player-card-icon">🧱</span>
                 </div>
               </div>
             </div>
@@ -69,19 +69,19 @@
         <div class="player-deck__wrapper">
           <!-- Attack Options -->
           <div class="deck__options__list">
-            <div class="deck__options__item">
+            <button class="deck__options__item">
               🧱
               <span id="rock" class="deck__options__item__value">rock</span>
-            </div>
-            <div class="deck__options__item">
+            </button>
+            <button class="deck__options__item">
               📄
               <span id="paper" class="deck__options__item__value">paper</span>
-            </div>
-            <div class="deck__options__item">
+            </button>
+            <button class="deck__options__item">
               ✂
               <span id="scissor" class="deck__options__item__value">scissor</span>
-            </div>
-            <button class="deck__start__button">start</button>
+            </button>
+            <button class="deck__start__button" id="start-btn">start</button>
           </div>
           <!-- =Deck= -->
           <div class="deck">
@@ -107,7 +107,7 @@
       <!-- End Container -->
     </main>
 
-    <!-- <div class="overlay" id="overlay">
+    <div class="overlay" id="overlay">
       <!-- <div class="modal-card" id="modal-start">
         <div class="modal-head">
           <h1>Rock Paper Scissor</h1>
@@ -123,8 +123,8 @@
         </div>
       </div> -->
 
-      <!-- <div class="loading">Loading...</div> -->
-    </div> -->
+      <div class="loading" id="loading">Loading...</div>
+    </div>
 
     <script src="main.js"></script>
   </body>

@@ -4,32 +4,64 @@ let cpuCard = null;
 let playerCard = null;
 let cpuHP = HP;
 let playerHP = HP;
+let loading = false;
 
 const ROCK = 'ROCK';
 const PAPER = 'PAPER';
 const SCISSOR = 'SCISSOR';
 const TIE = 'TIE';
 
+const ATTACK_TOOLS = [
+  { name: PAPER, icon: '📄' },
+  { name: ROCK, icon: '🧱' },
+  { name: SCISSOR, icon: '✂' },
+];
+
 const EVENTS = {
   SET_USERNAME: 'SET_USERNAME',
   BATTLE: 'BATTLE',
   RENDER_HP: 'RENDER_HP',
+  RESET_BATTLE: 'RESET_BATTLE',
+  WIN: 'WIN',
+  LOADING: 'LOADING',
+  FLIP_CARD: 'FLIP_CARD',
 };
 
-document.addEventListener('DOMContentLoaded', () => {});
+document.addEventListener('DOMContentLoaded', () => {
+  const startBtnEl = document.getElementById('start-btn');
+  if (startBtnEl) {
+    startBtnEl.addEventListener('click', startBattle);
+  }
+});
 
-document.addEventListener(EVENTS.SET_USERNAME, () => {
+document.addEventListener(EVENTS.SET_USERNAME, () => {});
 
-})
+document.addEventListener(EVENTS.RESET_BATTLE, () => {});
 
-document.addEventListener(EVENTS.BATTLE, () => {});
+document.addEventListener(EVENTS.FLIP_CARD, () => {
+  cpuCard = cpuAttack();
+
+  const cpuCardIconEl = document.getElementById('cpu-card-icon');
+  cpuCardIconEl.innerHTML = cpuCard.icon;
+
+  const innerCardEls = document.querySelectorAll(
+    '.battle-card .battle-card__inner'
+  );
+
+  if (innerCardEls.length > 0) {
+    countdown(3, () =>
+      innerCardEls.forEach((el) => {
+        el.classList.add('rotate');
+      })
+    );
+  }
+});
 
 document.addEventListener(EVENTS.RENDER_HP, () => {});
 
 function cpuAttack() {
-  const attackTools = [ROCK, PAPER, SCISSOR];
-  const index = Math.floor(Math.random() * attackTools.length);
-  return attackTools[index];
+  const index = Math.floor(Math.random() * ATTACK_TOOLS.length);
+  return ATTACK_TOOLS[index];
 }
 
 function matchCard(value1, value2) {
@@ -63,6 +95,30 @@ function compareCard(matchResult) {
   }
 }
 
+function countdown(length = 5, cb) {
+  const loadingEl = document.getElementById('loading');
+  const overlay = document.getElementById('overlay');
+
+  loadingEl.innerHTML = 'READY...';
+  loading = true;
+
+  if (loading) {
+    overlay.classList.add('show');
+  }
+
+  let count = length;
+  const timerId = setInterval(() => {
+    loadingEl.innerHTML = count;
+    count -= 1;
+    if (count < 0) {
+      cb();
+      overlay.classList.remove('show');
+      loading = false;
+      clearInterval(timerId);
+    }
+  }, 1000);
+}
+
 function startBattle() {
-  document.dispatchEvent(new Event(EVENTS.BATTLE));
+  document.dispatchEvent(new Event(EVENTS.FLIP_CARD));
 }
