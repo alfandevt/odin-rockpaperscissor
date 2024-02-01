@@ -21,10 +21,10 @@
         <div class="deck ai">
           <!-- Details -->
           <div class="deck__details">
-            <h4 class="deck__username">CPU</h4>
+            <h4 id="computer-label" class="deck__username">Computer</h4>
             <!-- >>Health Bar<<p -->
             <div class="deck__health-bar">
-              <div class="deck__health-bar__filler"></div>
+              <div id="computer-hp" class="deck__health-bar__filler"></div>
               <p class="deck__health-bar__text">HP: 100</p>
             </div>
           </div>
@@ -44,20 +44,24 @@
               <div class="battle-card__inner">
                 <div class="battle-card__back">&nbsp;</div>
                 <div class="battle-card__front">
-                  <span class="battle-card__icon" id="cpu-card-icon">📄</span>
+                  <span class="battle-card__icon" id="computer-card-icon"
+                    >📄</span
+                  >
                 </div>
               </div>
             </div>
-            <p class="battle-card__username">CPU</p>
+            <p id="computer-card-label" class="battle-card__username">CPU</p>
           </div>
           <h3 class="battle-space__heading">VS</h3>
           <div class="battle-card__wrapper">
-            <p class="battle-card__username">Username</p>
+            <p id="player-card-label" class="battle-card__username">Username</p>
             <div class="battle-card">
               <div class="battle-card__inner">
                 <div class="battle-card__back">&nbsp;</div>
                 <div class="battle-card__front">
-                  <span class="battle-card__icon" id="player-card-icon">🧱</span>
+                  <span class="battle-card__icon" id="player-card-icon"
+                    >🧱</span
+                  >
                 </div>
               </div>
             </div>
@@ -66,22 +70,11 @@
         <!-- End Battle Space -->
 
         <!-- ==Player Deck== -->
-        <div class="player-deck__wrapper">
+        <div id="playerDeck" class="player-deck__wrapper">
           <!-- Attack Options -->
           <div class="deck__options__list">
-            <button class="deck__options__item">
-              🧱
-              <span id="rock" class="deck__options__item__value">rock</span>
-            </button>
-            <button class="deck__options__item">
-              📄
-              <span id="paper" class="deck__options__item__value">paper</span>
-            </button>
-            <button class="deck__options__item">
-              ✂
-              <span id="scissor" class="deck__options__item__value">scissor</span>
-            </button>
-            <button class="deck__start__button" id="start-btn">start</button>
+            <!-- Generate Button Here  -->
+            <!-- <button class="deck__start__button" id="start-btn">start</button> -->
           </div>
           <!-- =Deck= -->
           <div class="deck">
@@ -92,10 +85,10 @@
             />
             <!-- Details -->
             <div class="deck__details">
-              <h4 id="playerUsername" class="deck__username">Username</h4>
+              <h4 id="player-label" class="deck__username">Player</h4>
               <!-- >>Health Bar<<p -->
               <div class="deck__health-bar">
-                <div class="deck__health-bar__filler"></div>
+                <div id="player-hp" class="deck__health-bar__filler"></div>
                 <p class="deck__health-bar__text">HP: 100</p>
               </div>
             </div>
@@ -106,25 +99,6 @@
       </div>
       <!-- End Container -->
     </main>
-
-    <div class="overlay" id="overlay">
-      <!-- <div class="modal-card" id="modal-start">
-        <div class="modal-head">
-          <h1>Rock Paper Scissor</h1>
-        </div>
-        <div class="modal-content">
-          <div class="modal-input">
-            <label>Enter a username:</label>
-            <input type="text" id="usernameInput">
-          </div>
-        </div>
-        <div class="modal-footer">
-          <button class="btn-start">START</button>
-        </div>
-      </div> -->
-
-      <div class="loading" id="loading">Loading...</div>
-    </div>
 
     <script src="main.js"></script>
   </body>
