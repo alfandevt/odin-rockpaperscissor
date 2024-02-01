@@ -114,7 +114,7 @@ function playRound(playerSelection, computerSelection) {
     if (hasInit == true && hasGameFinished == true) {
       endGame();
     }
-  }, 0.7 * 1000);
+  }, 1 * 1000);
 }
 
 function resetGame() {
@@ -197,7 +197,7 @@ function initRender() {
   // Generate Start button
   deckStartBtnEl.classList.add('deck__start__button');
   deckStartBtnEl.disabled = true;
-  deckStartBtnEl.append('START');
+  deckStartBtnEl.innerHTML = 'START';
   deckStartBtnEl.addEventListener('click', () => {
     document.dispatchEvent(new Event(EVENTS.PLAY));
   });
@@ -211,13 +211,17 @@ function initRender() {
 
     // Select card for player
     deckBtnEl.addEventListener('click', () => {
+      resetSelectedButton();
       playerSelection = card.name;
       playerCardEl.textContent = card.icon;
-      if (deckStartBtnEl.disabled) {
+      if (deckStartBtnEl.disabled == true) {
         deckStartBtnEl.disabled = false;
       }
+      deckBtnEl.classList.add('selected');
+      console.log('cl');
     });
-    deckListEl.append(deckBtnEl, deckStartBtnEl);
+    deckListEl.append(deckBtnEl);
+    deckListEl.after(deckStartBtnEl);
     overlayEl.append(modalCardEl);
     bodyEl.append(overlayEl);
   });
@@ -252,6 +256,16 @@ function toggleDeckButtons() {
     const deckBtn = document.getElementById(card.name);
     if (deckBtn) {
       deckBtn.disabled = !deckBtn.disabled;
+      deckBtn.classList.remove('selected');
+    }
+  });
+}
+
+function resetSelectedButton() {
+  getCardList().forEach((card) => {
+    const deckBtn = document.getElementById(card.name);
+    if (deckBtn) {
+      deckBtn.classList.remove('selected');
     }
   });
 }
