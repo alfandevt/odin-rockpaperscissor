@@ -1,14 +1,18 @@
 const HP = 100;
-const countdown = 3;
+const timer = 1 * 1000;
 
 const gameTitle = 'ROCK PAPER SCISSOR';
 const gameSubtitle = 'Press the PLAY button to start playing!!';
+const battleSubtitle = 'START THE BATTLE!!';
 
 let computerHP = HP;
 let playerHP = HP;
 
-let playerTextLabel = 'Player';
+let playerTextLabel = 'You';
 let computerTextLabel = 'Computer';
+
+let battleInfo = battleSubtitle;
+let roundWinnerInfo = '';
 
 let computerSelection = null;
 let playerSelection = null;
@@ -55,6 +59,8 @@ const modalCardHeadingEl = document.createElement('h1');
 const modalCardContentEl = document.createElement('div');
 const modalCardContentTextEl = document.createElement('h2');
 const modalCardFooterEl = document.createElement('div');
+// Text
+const battleInfoEl = document.querySelector('.battle-info');
 
 /* Events */
 document.addEventListener('DOMContentLoaded', onDOMContentLoaded);
@@ -88,18 +94,23 @@ function playRound(playerSelection, computerSelection) {
   let computerCard = getCardList().find((v) => v.name == computerSelection);
   compareCardIconEl.innerHTML = computerCard.icon;
 
-  console.log(playerCard.icon, computerCard.icon);
   if (playerCard.id === computerCard.id) {
-    console.log("it's draw");
+    battleInfo = playerSelection + ' WITH ' + computerSelection;
+    roundWinnerInfo = 'IT\'S A DRAW';
   } else if (
     (playerCard.id === 1 && computerCard.id == 2) ||
     (playerCard.id === 2 && computerCard.id == 3) ||
     (playerCard.id === 3 && computerCard.id == 1)
   ) {
     computerHP -= 20;
+    battleInfo = playerSelection + ' BEAT ' + computerSelection;
+    roundWinnerInfo = 'YOU WIN THIS ROUND';
   } else {
     playerHP -= 20;
+    battleInfo = computerSelection + ' BEAT ' + playerSelection;
+    roundWinnerInfo = 'COMPUTER WIN THIS ROUND';
   }
+  battleInfoEl.children.item(0).innerHTML = battleInfo;
 
   flipCard();
   toggleDeckButtons();
@@ -111,10 +122,13 @@ function playRound(playerSelection, computerSelection) {
     flipCard();
     toggleDeckButtons();
     checkRound();
+
+    battleInfoEl.children.item(0).innerHTML = roundWinnerInfo;
+
     if (hasInit == true && hasGameFinished == true) {
       endGame();
     }
-  }, 1 * 1000);
+  }, timer);
 }
 
 function resetGame() {
@@ -123,6 +137,8 @@ function resetGame() {
 
   computerSelection = null;
   playerSelection = null;
+
+  battleInfo = 'BEGIN THE BATTLE!!';
 
   hasGameFinished = false;
 }
@@ -139,13 +155,14 @@ function checkRound() {
 function endGame() {
   let subtitle = '';
   if (hasGameFinished == true && computerHP <= 0) {
-    subtitle = 'YOU HAVE WON THE GAME!!';
+    subtitle = 'YOU WIN!!';
   } else if (hasGameFinished == true && playerHP <= 0) {
-    subtitle = "YOU HAVE'NT WON THE GAME!!";
+    subtitle = 'YOU LOSE!!';
   } else {
     subtitle = "IT'S A DRAW";
   }
   resetGame();
+  battleInfoEl.children.item(0).innerHTML = battleInfo;
   toggleModal(gameTitle, subtitle, 'PLAY AGAIN');
 }
 
@@ -218,7 +235,6 @@ function initRender() {
         deckStartBtnEl.disabled = false;
       }
       deckBtnEl.classList.add('selected');
-      console.log('cl');
     });
     deckListEl.append(deckBtnEl);
     deckListEl.after(deckStartBtnEl);
@@ -226,6 +242,7 @@ function initRender() {
     bodyEl.append(overlayEl);
   });
   hasInit = true;
+  battleInfoEl.children.item(0).innerHTML = battleInfo;
 }
 
 function startGame() {
