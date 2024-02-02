@@ -52,6 +52,8 @@ const computerLabel = document.getElementById('computer-label');
 const playerLabel = document.getElementById('player-label');
 const computerCardLabel = document.getElementById('computer-card-label');
 const playerCardLabel = document.getElementById('player-card-label');
+const playerHPLabel = document.getElementById('player-hp-label');
+const computerHPLabel = document.getElementById('computer-hp-label');
 // Modals
 const modalCardEl = document.createElement('div');
 const modalCardHeadEl = document.createElement('div');
@@ -96,7 +98,7 @@ function playRound(playerSelection, computerSelection) {
 
   if (playerCard.id === computerCard.id) {
     battleInfo = playerSelection + ' WITH ' + computerSelection;
-    roundWinnerInfo = 'IT\'S A DRAW';
+    roundWinnerInfo = "IT'S A DRAW";
   } else if (
     (playerCard.id === 1 && computerCard.id == 2) ||
     (playerCard.id === 2 && computerCard.id == 3) ||
@@ -105,10 +107,12 @@ function playRound(playerSelection, computerSelection) {
     computerHP -= 20;
     battleInfo = playerSelection + ' BEAT ' + computerSelection;
     roundWinnerInfo = 'YOU WIN THIS ROUND';
+    computerHPLabel.innerHTML = computerHP + '/' + HP;
   } else {
     playerHP -= 20;
     battleInfo = computerSelection + ' BEAT ' + playerSelection;
     roundWinnerInfo = 'COMPUTER WIN THIS ROUND';
+    playerHPLabel.innerHTML = playerHP + '/' + HP;
   }
   battleInfoEl.children.item(0).innerHTML = battleInfo;
 
@@ -141,6 +145,8 @@ function resetGame() {
   battleInfo = 'BEGIN THE BATTLE!!';
 
   hasGameFinished = false;
+  playerHPLabel.innerHTML = playerHP + '/' + HP;
+  computerHPLabel.innerHTML = computerHP + '/' + HP;
 }
 
 /* Function to check the Game Rounds */
@@ -192,8 +198,10 @@ function flipCard() {
 function initRender() {
   playerCardLabel.innerHTML = playerTextLabel;
   playerLabel.innerHTML = playerTextLabel;
+  playerHPLabel.innerHTML = playerHP + '/' + HP;
   computerCardLabel.innerHTML = computerTextLabel;
   computerLabel.innerHTML = computerTextLabel;
+  computerHPLabel.innerHTML = computerHP + '/' + HP;
 
   /* Generating Modals */
   modalCardEl.classList.add('modal-card');
