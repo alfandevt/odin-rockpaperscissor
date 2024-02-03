@@ -3,7 +3,7 @@ const timer = 1 * 1000;
 
 const gameTitle = 'ROCK PAPER SCISSOR';
 const gameSubtitle = 'Press the PLAY button to start playing!!';
-const battleSubtitle = 'START THE BATTLE!!';
+const battleSubtitle = 'PICK YOUR WEAPON!!';
 
 let computerHP = HP;
 let playerHP = HP;
@@ -142,7 +142,7 @@ function resetGame() {
   computerSelection = null;
   playerSelection = null;
 
-  battleInfo = 'BEGIN THE BATTLE!!';
+  battleInfo = battleSubtitle;
 
   hasGameFinished = false;
   playerHPLabel.innerHTML = playerHP + '/' + HP;
